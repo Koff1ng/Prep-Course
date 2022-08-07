@@ -33,7 +33,7 @@ const {
   areaDelTriangulo,
   deEuroAdolar,
   esVocal,
-} = require('../homework.js');
+} = require('..homework');
 
 describe('nuevaString', function() {
   it('Deberia ser un string', function() {
