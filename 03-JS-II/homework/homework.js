@@ -1,5 +1,7 @@
 // No cambies los nombres de las funciones.
 
+const { arrayReplaceAt } = require("markdown-it/lib/common/utils");
+
 function obtenerMayor(x, y) {
   // "x" e "y" son números enteros (int).
   // Devuelve el número más grande
@@ -17,7 +19,7 @@ function mayoriaDeEdad(edad) {
   //Determinar si la persona según su edad puede ingresar a un evento.
   //Si tiene 18 años ó más, devolver --> "Allowed"
   //Si es menor, devolver --> "Not allowed"
-  if (edad > 18) {
+  if ((edad) => 18) {
     return "Allowed";
   }
   return "Not allowed";
@@ -124,21 +126,14 @@ function fizzBuzz(numero) {
   // Si "numero" es divisible entre 5, devuelve "buzz"
   // Si "numero" es divisible entre 3 y 5 (ambos), devuelve "fizzbuzz"
   // De lo contrario, devuelve el numero
-  switch (numero) {
-    case numero % 3 == 0:
-      return "fizz";
-
-      break;
-    case numero % 5 == 0:
-      return "buzz";
-      break;
-    case numero % 5 == 0 && numero % 3 == 0:
-      return "fizzbuzz";
-      break;
-
-    default:
-      return numero;
-      break;
+  if (numero % 5 == 0 && numero % 3 == 0) {
+    return "fizzbuzz";
+  } else if (numero % 3 == 0) {
+    return "fizz";
+  } else if (numero % 5 == 0) {
+    return "buzz";
+  } else {
+    return numero;
   }
 }
 
@@ -149,6 +144,16 @@ function operadoresLogicos(num1, num2, num3) {
   //Si num3 es más grande que num1 y num2, aumentar su valor en 1 y retornar el nuevo valor.
   //0 no es ni positivo ni negativo. Si alguno de los argumentos es 0, retornar "Error".
   //Si no se cumplen ninguna de las condiciones anteriores, retornar false.
+  if (num1 > num2 && num1 > num3 && num1 > 0) {
+    return "Número 1 es mayor y positivo";
+  } else if ((num1 < 0) | (num2 < 0) | (num3 < 0)) {
+    return "Hay negativos";
+  } else if (num3 > num1 && num3 > num2) {
+    return num3 + 1;
+  } else if ((num1 == 0) | (num2 == 0) | (num3 == 0)) {
+    return "Error";
+  }
+  return false;
 }
 
 function esPrimo(numero) {
@@ -157,29 +162,68 @@ function esPrimo(numero) {
   // Pista: un número primo solo es divisible por sí mismo y por 1
   // Pista 2: Puedes resolverlo usando un bucle `for`
   // Nota: Los números 0 y 1 NO son considerados números primos
+  let esPrimo = true;
+  if (numero == 1) {
+    esPrimo = false;
+    return esPrimo;
+  } else if (numero > 1) {
+    for (let i = 2; i < numero; i++) {
+      if (numero % i == 0) {
+        esPrimo = false;
+        break;
+      }
+    }
+  }
+  if (esPrimo) {
+    return "es primo";
+  } else {
+    return "falso";
+  }
 }
 
 function esVerdadero(valor) {
   //Escribe una función que reciba un valor booleano y retorne “Soy verdadero”
   //si su valor es true y “Soy falso” si su valor es false.
   //Escribe tu código aquí
+  if (valor == true) {
+    return "Soy verdadero";
+  } else if (valor == false) {
+    return "Soy falso";
+  }
 }
 
 function tablaDelSeis() {
+  let resultadosMultiplicacion = [];
   //Escribe una función que muestre la tabla de multiplicar del 6 (del 0 al 60).
   //La función devuelve un array con los resultados de la tabla de multiplicar del 6 en orden creciente.
   //Escribe tu código aquí
+  for (let i = 1; i <= 10; i++) {
+    resultadosMultiplicacion.push(i * 6);
+  }
+  return resultadosMultiplicacion;
 }
 
 function tieneTresDigitos(numero) {
   //Leer un número entero y retornar true si tiene 3 dígitos. Caso contrario, retorna false.
   //Escribe tu código aquí
+  if (numero.length == 3) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 function doWhile(numero) {
   //Implementar una función tal que vaya aumentando el valor recibido en 5 hasta un límite de 8 veces
   //Retornar el valor final.
   //Usar el bucle do ... while.
+  let i = 1;
+
+  do {
+    numero += 5;
+    i++;
+  } while (i <= 8);
+  return numero;
 }
 
 // No modificar nada debajo de esta línea
